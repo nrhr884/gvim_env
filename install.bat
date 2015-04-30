@@ -1,4 +1,9 @@
+@echo off
+REM _vimrcのシンボリックリンクを作成
 cd ..
+mklink /h .\_vimrc .\gvim_env\_vimrc
+
+REM NeoBundleのInstall
 mkdir bundle
-mklink /j .\_vimrc .\gvim_env\_vimrc
 cd bundle
+git clone https://github.com/Shougo/neobundle.vim.git
