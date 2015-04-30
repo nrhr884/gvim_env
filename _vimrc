@@ -194,6 +194,11 @@ noremap <silent>,uo :Unite outline<CR>
 noremap <silent>,mm :Unite mark<CR>
 noremap <silent>,bb :Unite bookmark<CR>
 
+noremap <C-G> :Unite gtags/grep<CR>
+noremap <C-H> :Unite gtags/ref<CR>
+noremap <C-]> :Unite gtags/def<CR>
+noremap <C-T> <C-O><CR>
+
 " unite grep に ag(The Silver Searcher) を使う
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
