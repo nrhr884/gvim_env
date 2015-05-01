@@ -1,5 +1,5 @@
-# gvim_env
-Create Enviroment For Gvim(Windows)
+# vim-env
+Create Enviroment For vim
 
 #system requirements
 ・Git
