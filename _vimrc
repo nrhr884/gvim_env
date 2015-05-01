@@ -146,15 +146,23 @@ set nocompatible
 filetype off
 
 if has('vim_starting')
-  set runtimepath+=$VIM/bundle/neobundle.vim/
+  set runtimepath+=~/bundle/neobundle.vim/
 endif
 
-call neobundle#begin(expand('$VIM/bundle/'))
+call neobundle#begin(expand('~/bundle/'))
 "インストールするプラグイン
 "unite.vimとvimprocがインストールされていると非同期でプラグインがアップデートできる。
 NeoBundleFetch 'Shougo/neobundle.vim'
 let g:neobundle_default_git_protocol='https'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc.vim', {
+            \ 'build' : {
+            \     'windows' : 'tools\\update-dll-mingw',
+            \     'cygwin' : 'make -f make_cygwin.mak',
+            \     'mac' : 'make -f make_mac.mak',
+            \     'linux' : 'make',
+            \     'unix' : 'gmake',
+            \    },
+            \ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimfiler'
