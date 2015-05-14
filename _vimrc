@@ -18,6 +18,7 @@ set wildmenu
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
 autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %<CR>
 autocmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
+autocmd BufNewFile,BufRead *.c nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
 
 "Search
 set ignorecase
@@ -39,9 +40,6 @@ set switchbuf=useopen   " 新しく開く代わりにすでに開いてあるバ
 set showmatch           " 対応する括弧などをハイライト表示する
 set matchtime=3         " 対応括弧のハイライト表示を3秒にする
                                                                     
-" 対応括弧に'<'と'>'のペアを追加
-""set matchpairs& matchpairs+=<:>
-
 " バックスペースでなんでも消せるようにする
 set backspace=indent,eol,start
 
@@ -60,11 +58,11 @@ set nowritebackup
 set nobackup
 set noswapfile
 
-"表示関連"
+" display setting
 set number
 set nowrap
 
-" 前時代的スクリーンベルを無効化
+" disable screen bell
 set t_vb=
 set novisualbell
 set listchars=
