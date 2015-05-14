@@ -13,6 +13,10 @@ set showcmd
 set title
 set wildmenu
 
+"set fileencodings
+:set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+:set fileformats=unix,dos,mac
+
 "Run
 "autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby % < %:h/input.txt<CR>
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
@@ -178,6 +182,9 @@ if has('lua')
 endif
 
 call neobundle#end()
+
+"Vimfiler
+let g:vimfiler_as_default_explorer=1
 
 "neocompleteの設定"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
