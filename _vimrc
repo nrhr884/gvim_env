@@ -12,17 +12,17 @@ set cmdheight=2
 set showcmd
 set title
 set wildmenu
+set number
 
 "set fileencodings
 :set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 :set fileformats=unix,dos,mac
 
 "Run
-"autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby % < %:h/input.txt<CR>
-autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
-autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %<CR>
-autocmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
-autocmd BufNewFile,BufRead *.c nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
+autocmd MyAutoCmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
+autocmd MyAutoCmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %<CR>
+autocmd MyAutoCmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
+autocmd MyAutoCmd BufNewFile,BufRead *.c nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
 
 "Search
 set ignorecase
@@ -139,14 +139,8 @@ function! s:ChangeCurrentDir(directory, bang)
     endif
 endfunction
 
-"NeoBundle関連"
-filetype on
-filetype plugin on
-filetype indent on
-
+"NeoBundle"
 set nocompatible
-filetype off
-
 if has('vim_starting')
   set runtimepath+=~/bundle/neobundle.vim/
 endif
@@ -243,6 +237,4 @@ xmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 xmap <Space>M <Plug>(quickhl-manual-reset)
 
-filetype plugin on
-filetype indent on
-set number
+filetype plugin indent on
