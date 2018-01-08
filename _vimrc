@@ -173,17 +173,10 @@ call neobundle#end()
 
 "Unite.vim"
 noremap <C-N> :Unite buffer<CR>
-noremap <C-P> :VimFiler<CR>
 noremap <silent>,f :Unite -buffer-name=search line -start-insert -no-quit<CR>
 noremap <silent>,uu :Unite file_mru<CR> 
 noremap <silent>,uo :Unite outline<CR>
-noremap <silent>,mm :Unite mark<CR>
 noremap <silent>,bb :Unite bookmark<CR>
-
-noremap <C-G> :Unite gtags/grep<CR>
-noremap <C-H> :Unite gtags/ref<CR>
-noremap <C-]> :Unite gtags/def<CR>
-noremap <C-T> <C-O><CR>
 
 " unite grep に ag(The Silver Searcher) を使う
 if executable('ag')
