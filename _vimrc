@@ -165,6 +165,12 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle "t9md/vim-quickhl"
 NeoBundle "ctrlpvim/ctrlp.vim"
+NeoBundle "tpope/vim-rails"
+NeoBundle "basyura/unite-rails"
+NeoBundle "mattn/emmet-vim"
+NeoBundle "cohama/lexima.vim"
+NeoBundle "tpope/vim-fugitive"
+NeoBundle 'easymotion/vim-easymotion'
 if has('lua')
   NeoBundle 'Shougo/neocomplete.vim'
 endif
@@ -208,5 +214,8 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+
+" easymotion
+nmap s <Plug>(easymotion-s)
 
 filetype plugin indent on
