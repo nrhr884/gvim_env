@@ -179,10 +179,11 @@ call neobundle#end()
 
 "Unite.vim"
 noremap <C-N> :Unite buffer<CR>
-noremap <silent>,f :Unite -buffer-name=search line -start-insert -no-quit<CR>
-noremap <silent>,uu :Unite file_mru<CR> 
-noremap <silent>,uo :Unite outline<CR>
-noremap <silent>,bb :Unite bookmark<CR>
+noremap <silent>um :Unite file_mru<CR> 
+noremap <silent>uo :Unite outline<CR>
+noremap <silent>ub :Unite bookmark<CR>
+noremap <silent>ug :Unite grep/git<CR><CR>
+noremap <silent>ucg :Unite grep/git<CR><CR><c-r>=expand("<cword>")<CR><CR>
 
 " unite grep に ag(The Silver Searcher) を使う
 if executable('ag')
@@ -209,11 +210,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " easymotion
 nmap s <Plug>(easymotion-s)
