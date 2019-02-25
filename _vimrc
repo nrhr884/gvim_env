@@ -15,13 +15,14 @@ set wildmenu
 set number
 
 "set fileencodings
-:set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+:set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 :set fileformats=unix,dos,mac
 
 "Run
 autocmd MyAutoCmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
-autocmd MyAutoCmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %<CR>
-autocmd MyAutoCmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ -std=c++11 % && ./a.out < input.txt<CR>
+autocmd MyAutoCmd BufNewFile,BufRead *.py nnoremap <C-e> :!python3 %<CR>
+"autocmd MyAutoCmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ -std=c++11 % && ./a.out < input.txt<CR>
+autocmd MyAutoCmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!make<CR>
 autocmd MyAutoCmd BufNewFile,BufRead *.c nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
 
 "Search
@@ -98,10 +99,10 @@ nnoremap <Tab> %
 vnoremap <Tab> %
 
 " Ctrl + hjkl でウィンドウ間を移動
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
 " Shift + 矢印でウィンドウサイズを変更
 nnoremap <S-Left>  <C-w><<CR>
 nnoremap <S-Right> <C-w>><CR>
@@ -171,9 +172,11 @@ NeoBundle "mattn/emmet-vim"
 NeoBundle "cohama/lexima.vim"
 NeoBundle "tpope/vim-fugitive"
 NeoBundle 'easymotion/vim-easymotion'
-if has('lua')
-  NeoBundle 'Shougo/neocomplete.vim'
-endif
+NeoBundle "kmnk/vim-unite-giti"
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'hewes/unite-gtags'
 
 call neobundle#end()
 
@@ -182,8 +185,9 @@ noremap <C-N> :Unite buffer<CR>
 noremap <silent>um :Unite file_mru<CR> 
 noremap <silent>uo :Unite outline<CR>
 noremap <silent>ub :Unite bookmark<CR>
-noremap <silent>ug :Unite grep/git<CR><CR>
-noremap <silent>ucg :Unite grep/git<CR><CR><c-r>=expand("<cword>")<CR><CR>
+noremap <silent>ur :Unite gtags/ref<CR><c-r>=expand("<cword>")<CR><CR>
+noremap <silent>ug :Unite gtags/grep<CR>
+noremap <silent>ucg :Unite gtags/grep<CR><c-r>=expand("<cword>")<CR><CR>
 
 " unite grep に ag(The Silver Searcher) を使う
 if executable('ag')
@@ -214,5 +218,35 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 
 " easymotion
 nmap s <Plug>(easymotion-s)
+
+"Neo snippet
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+"gtags
+map <C-g> :Gtags -g
+map <C-h> :Gtags -f %<CR>
+map <C-j> :GtagsCursor<CR>
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+let g:neosnippet#snippets_directory='~/bundle/neosnippet-snippets/snippets/'
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 filetype plugin indent on
