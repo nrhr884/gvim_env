@@ -24,6 +24,7 @@ autocmd MyAutoCmd BufNewFile,BufRead *.py nnoremap <C-e> :!python3 %<CR>
 "autocmd MyAutoCmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!g++ -std=c++11 % && ./a.out < input.txt<CR>
 autocmd MyAutoCmd BufNewFile,BufRead *.cpp nnoremap <C-e> :!make<CR>
 autocmd MyAutoCmd BufNewFile,BufRead *.c nnoremap <C-e> :!g++ -std=c++11 % && ./a.out<CR>
+autocmd MyAutoCmd BufNewFile,BufRead *.lisp nnoremap <C-e> :!clisp -i %<CR>
 
 "Search
 set ignorecase
@@ -166,10 +167,10 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle "t9md/vim-quickhl"
 NeoBundle "ctrlpvim/ctrlp.vim"
-NeoBundle "tpope/vim-rails"
-NeoBundle "basyura/unite-rails"
-NeoBundle "mattn/emmet-vim"
-NeoBundle "cohama/lexima.vim"
+"NeoBundle "tpope/vim-rails"
+"NeoBundle "basyura/unite-rails"
+"NeoBundle "mattn/emmet-vim"
+"NeoBundle "cohama/lexima.vim"
 NeoBundle "tpope/vim-fugitive"
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle "kmnk/vim-unite-giti"
@@ -177,6 +178,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'hewes/unite-gtags'
+NeoBundle 'kovisoft/slimv'
 
 call neobundle#end()
 
@@ -248,5 +250,18 @@ let g:neosnippet#snippets_directory='~/bundle/neosnippet-snippets/snippets/'
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
+let g:slimv_repl_split = 4
+let g:slimv_repl_name = 'REPL'
+let g:slimv_repl_simple_eval = 0
+let g:slimv_lisp = '/usr/local/bin/ros run'
+let g:slimv_impl = 'sbcl'
+let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"ros run --load $HOME/.roswell/lisp/slime/2018.09.30/start-swank.lisp\""'
+let g:paredit_electric_return = 0
+let g:paredit_matchlines = 0
+
+let g:lisp_rainbow=1
+
+autocmd BufNewFile,BufRead *.asd set filetype=lisp
 
 filetype plugin indent on
